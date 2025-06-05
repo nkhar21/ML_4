@@ -111,7 +111,31 @@ wandb project: https://wandb.ai/nkhar21-student/ML_4
    ამიტომ მოდელს დავამატე data augmentation შემდეგ ფაილში.
 
 
-3. FER_Data_Augmentation.ipynb - კონვოლუციური ქსელები
+3. FER_Data_Augmentation.ipynb
+   data augmentaiton აგენერირებს ახალ დატასეტს მოცემული ტრენინგის ფოტოების მანიპულაციით. მიღებული სურათები არის მსგავსი საწყისი ფოტოებისა,
+   თუმცა ახალი, მსგავსი სურათები ეხმარება მოდელს გენერალიზაციაში. თუ მოდელს სახეების ოდნავ შეცვლილ ვარიანტს ვაჩვენებთ (იგივე ემოციით),
+   მაშინ მოდელს გაუადვილდება იმ მახასიათებლების უკეთ ამოცნობა, რომლებიც ემოციას განსაზღვრავს.
+    
+   ჩემს მიერ გამოყენებული augmetation ტიპებია:
+       RandomHorizontalFlip - იგივე Mirror
+       RandomRotation - ოდნავი დატრიალება/გადახრა
+       RandomAffine(translate=(0.1,0.1), scale=(0.9,1.1), shear=5)
+           Translate - ოდნავ ანაცვლებს სახეს
+           scale - zoom in/out
+           Shear - თითქოს კამერა დახრილი იყოს
+       RandomErasing - რანდომად ანოლებს პიქსელებს
+       ColorJitter - ცვლის სიკაშკაშეს და კონტრასტს
 
+   ასევე ამ ფაილში ვცადე სხვა Scheduler-ები და პარამეტრებიც.
 
+   საუკეთესო მოდელი:
+       epochs=60
+       lr=0.0015
+       dropout_rate=0.5
+       scheduler: StepLR - LR შემცირება ყოველ 10 epoch-ზე
+       weight_decay=1e-4
+       label_smoothing: 0.1 - ასევე ეს დავამატე: Reduces overconfidence, improves generalization
+       best train, validation accuracy: 0.60234 / 0.63096 - თუმცა წინას ვერ აჯობა
+
+   აღსანიშნავია, რომ ამ მოდელმა პატარა underfit მომცა. ეს იქიდანაა გამოწვეული რომ augmentation-ს ვატარებ მხოლოდ სატრენინგო დატაზე.
     

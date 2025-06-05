@@ -1,5 +1,6 @@
 # ML_4
-Wandb project: https://wandb.ai/nkhar21-student/ML_4
+wandb project: https://wandb.ai/nkhar21-student/ML_4
+
 0.  შესავალი
     მოცემულ კეგლის competition-ში მოცემულია ადამიანის სახეების სურათი, რომლებიც 7 სხვადასხვა ემოციას გამოხატავს მიმიკით.
     ესენია: სიბრაზე, ზიზღი, შიში, სიხარული, სევდა, გაოცება და ნეიტრალური.
